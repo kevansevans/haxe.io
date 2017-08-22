@@ -3,9 +3,11 @@
 -lib tink_json
 -lib electron
 -lib cmd
-#-D dce=full
--cp .
-#--no-traces
+
+-debug
+-dce full
+-D shallow-expose
+-D analyzer-optimize
 
 --each 
 

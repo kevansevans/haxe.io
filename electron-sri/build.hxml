@@ -1,9 +1,14 @@
 -lib hxnodejs
 -lib thx.core
+-lib tink_core
 -lib tink_json
 -lib cmd
--D dce=full
--cp .
+
+-debug
+-dce full
+-D shallow-expose
+-D analyzer-optimize
+
 #--no-traces
 
 --each 

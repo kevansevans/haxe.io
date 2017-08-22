@@ -1,11 +1,16 @@
 -lib hxnodejs
 -lib thx.core
+-lib tink_core
 -lib cmd
--D dce=full
--cp .
---no-traces
+
+-debug
+-dce full
+-D shallow-expose
+-D analyzer-optimize
+
+#--no-traces
+-main FontCharacters
 
 --each
 
--main FontCharacters
--js ../site/font.characters.js
+-js ../site/fontcharacters.js
