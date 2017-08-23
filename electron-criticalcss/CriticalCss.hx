@@ -46,7 +46,7 @@ class CriticalCss {
     public static function make():CriticalCss {
         if (single == null) {
             data = tink.Json.parse( window.sessionStorage.getItem( 'data' ) );
-		    single = new CriticalCss( data.args );
+            single = new CriticalCss( data.args );
         }
 
         return single;
@@ -54,8 +54,8 @@ class CriticalCss {
 
     @alias public var root:String;
     @alias public var width:Int = 1280;
-	@alias public var height:Int = 800;
-	@alias('rs') public var resourcePath:String;
+    @alias public var height:Int = 800;
+    @alias('rs') public var resourcePath:String;
     private var browser:BrowserWindow;
     private var final:CallbackList<Noise->Void> = new CallbackList();
 
@@ -99,9 +99,9 @@ class CriticalCss {
         var criticalRules:Array<CSSStyleRule> = [];
 
         setTimeout( function() {
-			browser.webContents.closeDevTools();
-			
-			setTimeout( function() {
+            browser.webContents.closeDevTools();
+            
+            setTimeout( function() {
                 if (browser.isFocused()) browser.blur();
 
                 var viewportWidth = window.innerWidth;
@@ -142,11 +142,9 @@ class CriticalCss {
 
                 });
 
-                
-
             }, 500 );
-			
-		}, 500 );
+            
+        }, 500 );
     }
 
     public function filterUrl(n:DOMElement):Bool {
