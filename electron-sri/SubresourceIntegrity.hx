@@ -259,7 +259,7 @@ class SubresourceIntegrity {
 
 			url.pathname = url.pathname.replace( url.pathname.withoutDirectory().withoutExtension(), filename );
 			
-			(url.query:DynamicAccess<String>).set('v', filename);
+			//(url.query:DynamicAccess<String>).set('v', filename);
 			
 			node.setAttribute( attr, format( url ));
 

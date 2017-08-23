@@ -25,7 +25,7 @@ electron --enable-logging ./render/index.js \
 -md markdown-it-abbr markdown-it-attrs markdown-it-emoji \
 markdown-it-footnote markdown-it-headinganchor \
 -s ./render/build.js -r src -i $INPUT -o $BIN_DIR$BIN_BASE/index.max.html -b src \
---scripts ../site/criticalcss.js ../site/subresourceintegrity.js ../site/fontcharacters.js ../site/screengrab.js \
+--scripts ../site/screengrab.js ../site/criticalcss.js ../site/subresourceintegrity.js ../site/fontcharacters.js \
 -rs opt -w 1920 -h 1080 --show
 
 html-minifier \
