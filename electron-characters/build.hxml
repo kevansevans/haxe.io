@@ -1,5 +1,4 @@
 -lib hxnodejs
--lib thx.core
 -lib tink_core
 -lib cmd
 

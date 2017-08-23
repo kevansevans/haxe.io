@@ -1,12 +1,13 @@
 package ;
 
-import thx.Url;
 import js.Node.*;
 import js.html.*;
 import js.Browser.*;
+import js.node.Url.*;
 import js.Node.process;
 
 using tink.CoreApi;
+using haxe.io.Path;
 
 @:expose('fontcharacters')
 class FontCharacters {
@@ -27,10 +28,7 @@ class FontCharacters {
     }
     
     public function new() {
-        final.add(/*window.document.addEventListener( 'font.characters:final:sent', */function(cb:Callback<Noise>) {
-            //window.document.dispatchEvent( new CustomEvent( 'font.characters:final:received', {detail:{}, bubbles:true} ) );
-            cb.invoke(Noise);
-        }/*, untyped {once:true}*/ );
+        final.add( function(cb:Callback<Noise>) cb.invoke(Noise) );
         
         var body = window.document.getElementsByTagName('body')[0];
         var charList = [];
@@ -38,27 +36,27 @@ class FontCharacters {
         if (body != null) {
             charList = buildList( body );
             var link = window.document.querySelectorAll( 'head link[href*="fonts.googleapis.com/css"]' );
-            
+            console.log( 'charlist', charList.length, charList.join('') );
             if (link.length > 0) {
-                var url:Url = cast(link[0],DOMElement).getAttribute('href');
-                var queryString = url.queryString;
-                if (queryString != null) console.log( 'exists', queryString.exist('text') );
-                if (queryString != null && !queryString.exist('text')) {
-                    queryString.set( 'text', charList.join('') );
+                //var url:Url = cast(link[0],DOMElement).getAttribute('href');
+                var url = parse( cast(link[0], DOMElement).getAttribute('href'), true, true );
+                console.log( 'font url ', url );
+                //var queryString:haxe.DynamicAccess<String> = url.query;
+                if ((url.query:haxe.DynamicAccess<String>) != null) console.log( 'exists', (url.query:haxe.DynamicAccess<String>).exists('text') );
+                if ((url.query:haxe.DynamicAccess<String>) != null && !(url.query:haxe.DynamicAccess<String>).exists('text')) {
+                    (url.query:haxe.DynamicAccess<String>).set( 'text', ~/[^a-z0-9]*/gi.replace(charList.join(''), '') );
                     
-                    var search = queryString.toStringWithSymbols('&', '=', function(s)return s);
-                    var path = url.pathName + '?$search';
+                    //var search = queryString.toStringWithSymbols('&', '=', function(s)return s);
+                    /*var path = format( url );/*url.pathName + '?$search';
                     var string = (url.isAbsolute) ?
                     '${url.hasProtocol ? url.protocol + ":" : ""}${url.slashes?"//":""}${url.hasAuth?url.auth+"@":""}${url.host}${path}${url.hasHash?"#"+url.hash:""}'
                     :
-                    '${path}${url.hasHash?"#"+url.hash:""}';
-                        
-                    cast (link[0],DOMElement).setAttribute('href', string);
+                    '${path}${url.hasHash?"#"+url.hash:""}';*/
+                    Reflect.deleteField(url, 'search');
+                    console.log( 'final font url', format(url) );
+                    cast(link[0],DOMElement).setAttribute('href', format( url ));
                     
                 }
-                
-            } else {
-                trace( 'link length', link.length );
                 
             }
             

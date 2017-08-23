@@ -1,0 +1,21 @@
+-lib hxnodejs
+-lib thx.core
+-lib tink_core
+-lib tink_json
+-lib electron
+-lib cmd
+
+-debug
+-dce full
+-D shallow-expose
+-D analyzer-optimize
+
+-main CriticalCss
+
+--each
+
+-js ../site/criticalcss.js
+
+--next
+
+-js criticalcss.js

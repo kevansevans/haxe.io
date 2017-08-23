@@ -85,7 +85,7 @@ class SubresourceIntegrity {
 		
 		var nodes = [for (n in window.document.querySelectorAll('$Link[$Href], $Script[$Src], $Body [$Src], $Meta[$Content*="ms"]')) n];
 
-		final.add(/*window.document.addEventListener( '$Id:final:sent', */function(cb:Callback<Noise>) {
+		final.add( function(cb:Callback<Noise>) {
 			var nodes:Array<DOMElement> = cast nodes;
 			console.log( nodes );
             for (node in nodes) if (node.hasAttribute(Integrity)) {
@@ -94,12 +94,14 @@ class SubresourceIntegrity {
 				for (name in redundantNames) if (value.indexOf(name) > -1) {
 					value = value.replace('sha512-$name', '');
 				}
+
 				node.setAttribute(Integrity, value.trim());
+
             }
-            window.document.dispatchEvent( new CustomEvent( '$Id:final:received', {detail:{}, bubbles:true} ) );
+            
 			cb.invoke(Noise);
-        }/*, untyped {once:true}*/ );
-		
+        } );
+
 		var futures = [for (node in nodes) {
 			process( switch node.nodeName.toLowerCase() {
 				case Link: Href;
@@ -168,7 +170,18 @@ class SubresourceIntegrity {
 						case Success(clone):
 							console.log( clone );
 							var postcss = new PostCss([
-								require('autoprefixer'), require('postcss-sorting'), 
+								/*require('postcss-font-magician')({
+									//display: "swap", // Causes issue further down if specified.
+									variants: {
+										"Open Sans": {
+											"400": [],
+										},
+										"Gentium Book Basic": {
+											"400": [],
+											"700 italic": []
+										}
+									}
+								}),*/ require('autoprefixer'), require('postcss-sorting'),
 								require('postcss-merge-rules'), require('cssnano')
 							]);
 							Future.ofJsPromise(postcss.process(sys.io.File.getContent(clone))) >>

@@ -334,7 +334,7 @@ class Controller {
         var ns = require('http').createServer(function (request, response) {
             request.addListener('end', function () {
               files.serve(request, response);
-                    response.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'unsafe-inline' http://localhost:*/templates/ http://localhost:*/js/component.js http://localhost:*/js/convert.tag.js http://localhost:*/js/dom.data.js http://localhost:*/js/document.body.js http://localhost:*/js/document.head.js http://localhost:*/js/json.data.js http://localhost:*/js/move.tags.js http://localhost:*/js/ace.js; connect-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline';");
+                    response.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'unsafe-inline' http://localhost:*/templates/ http://localhost:*/js/component.js http://localhost:*/js/convert.tag.js http://localhost:*/js/dom.data.js http://localhost:*/js/document.body.js http://localhost:*/js/document.head.js http://localhost:*/js/json.data.js http://localhost:*/js/move.tags.js http://localhost:*/js/ace.js; connect-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src fonts.gstatic.com;");
                     
           }).resume();
         });
