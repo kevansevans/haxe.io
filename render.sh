@@ -21,6 +21,10 @@ mkdir -p $BIN_DIR$BIN_BASE
 mkdir -p $MIN_DIR$MIN_BASE
 mkdir -p $OPT_DIR$OPT_BASE
 
+echo $BIN_DIR$BIN_BASE
+echo $MIN_DIR$MIN_BASE
+echo $OPT_DIR$OPT_BASE
+
 electron --enable-logging ./render/index.js \
 -md markdown-it-abbr markdown-it-attrs markdown-it-emoji \
 markdown-it-footnote markdown-it-headinganchor \
