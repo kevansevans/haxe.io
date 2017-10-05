@@ -50,7 +50,7 @@
 					<json-data select=".framework" each>
 						<h2><a :id="*" type="text/html" :href="#{*}"><span></span></a><span :to="*"></span></h2>
 						<ul>
-							<json-data :select=".entries:has([frameworks^='{*}'])" retarget each>
+							<json-data :select=".entries:has([frameworks$='{*}'])" retarget each>
 								<li :data-platforms="{.platforms}">
 									<json-data :select=".ld, .entries:has(.author[name='{.author > .name}'])" retarget>
 										<a :href="http://ludumdare.com/compo/ludum-dare-{int:first-child}/{:last-child > .url}?{:last-child > .type}"><span :to="{:last-child > .name}"></span></a>

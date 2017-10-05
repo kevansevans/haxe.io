@@ -29,8 +29,9 @@ electron --enable-logging ./render/index.js \
 markdown-it-footnote markdown-it-headinganchor \
 -s ./render/build.js -r src -i $INPUT -o $BIN_DIR$BIN_BASE/index.max.html -b src \
 -j ./src/data/ld36.json ./src/data/ld36.manual.json \
---scripts ../site/subresourceintegrity.js ../site/font.characters.js ../site/screengrab.js \
--rs opt -w 1920 -h 1080
+--scripts ../site/screengrab.js ../site/criticalcss.js ../site/subresourceintegrity.js ../site/fontcharacters.js \
+-rs opt -w 1920 -h 1080 \
+--show
 
 html-minifier \
 --collapse-boolean-attributes --remove-comments --remove-empty-attributes --remove-redundant-attributes \
