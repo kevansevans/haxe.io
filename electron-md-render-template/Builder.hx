@@ -128,6 +128,10 @@ class Builder {
     }
     
     public function clean():Void {
+        for (link in window.document.querySelectorAll( 'a:not([href*="://haxe.io"]):not([href="#"]):not([href="/"])' )) if (cast (link,AnchorElement).href.length > 1) {
+            cast (link,DOMElement).setAttribute('target', '_blank');
+        }
+
         for (link in window.document.querySelectorAll( 'link[rel="import"]' )) {
             link.parentNode.removeChild( link );
             
