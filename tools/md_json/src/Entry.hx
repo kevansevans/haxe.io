@@ -1,5 +1,6 @@
 package ;
 
+import Consts;
 import js.Node.*;
 import tink.Json.*;
 import uhx.sys.Cli;
@@ -22,57 +23,7 @@ using thx.Objects;
 using haxe.io.Path;
 using unifill.Unifill;
 
-typedef Data = {
-    var port:Int;
-    var html:String;
-    var payload:Payload;
-    var args:Array<String>;
-    var scripts:Array<String>;
-}
-
-typedef Payload = {
-    var input:{raw:String, directory:String, parts:Array<String>, filename:String, extension:String};
-    var output:{raw:String, directory:String, parts:Array<String>, filename:String, extension:String};
-    var template:String;
-    var created:{raw:String, pretty:String};
-    var modified:{raw:String, pretty:String};
-    var published:{raw:String, pretty:String};
-    var edits:Array<String>;
-    var description:String;
-    var authors:Array<{display:String, url:String}>;
-    var contributors:Array<{display:String, url:String}>;
-    var extra:DynamicTink;
-}
-
-abstract DynamicTink(Dynamic) from Dynamic {
-    
-    @:to public inline function toTinkJson():Representation<Array<Int>> {
-        var str = haxe.Serializer.run(this);
-        trace(this);
-        return new Representation( [for (i in 0...str.uLength()) str.uCodePointAt(i).toInt()] );
-    }
-    
-    @:from public static inline function fromTinkJson(r:Representation<Array<Int>>):DynamicTink {
-        return haxe.Unserializer.run( r.get().map(function(i) return CodePoint.fromInt(i).toString()).join('') );
-    }
-    
-}
-
-@:jsRequire('markdown-it')
-extern class MarkdownIt {
-
-    public var block:Dynamic;
-    public var core:Dynamic;
-    public var renderer:Dynamic;
-    public var utils:Dynamic;
-    public function new(options:{html:Bool, linkify:Bool, typographer:Bool});
-    public function use(plugin:Dynamic, options:Dynamic):Void;
-    public function parse(value:String, environment:Dynamic):Array<Token>;
-
-}
-
 class Entry {
-
 
     public static function main() {
         var entry = new Entry();
@@ -127,18 +78,16 @@ class Entry {
             return;
 
         }
-        trace( input, output );
+        
         input = input.normalize();
         output = output.normalize();
 
         try init() catch(e:Any) trace(e, haxe.CallStack.toString(haxe.CallStack.exceptionStack()));
-        var json = tink.Json.stringify( generatePayload( markdownEnvironment ) );
     }
 
     private function init() {
         var options = {};
         // Pass extra options to markdownIt plugins.
-        //markdown = untyped __js__('new {0}', markdownIt)({ html: true, linkify: true, typographer: true });
         markdown = new MarkdownIt( { html: true, linkify: true, typographer: true } );
         
         if (markdownOptions != null) markdownObject = (markdownOptions == '') ? {} : haxe.Json.parse( markdownOptions );
@@ -149,7 +98,6 @@ class Entry {
                 
             }
             
-            trace( 'fetching $plugin' );
             markdown.use( require(plugin), options );
             
         }
@@ -159,11 +107,11 @@ class Entry {
         var original = markdown.block.ruler.__rules__[index].fn;
         
         var replaceReferences = [
-            ['references', 'AUTHOR'] => function(object:Dynamic) {
+            [Ref, Author] => function(object:Dynamic) {
                 if (object.fields().length > 0) payload.authors.push( {display:object.title, url:object.href} );
                 return true;	// delete
             },
-            ['references', 'CONTRIBUTOR'] => function(object:Dynamic) {
+            [Ref, Contributor] => function(object:Dynamic) {
                 if (object.fields().length > 0) payload.contributors.push( {display:object.title, url:object.href} );
                 return true;	// delete
             },
@@ -190,7 +138,7 @@ class Entry {
                             
                         }
                         
-                    } else {		
+                    } else {
                         
                         
                     }
@@ -244,27 +192,26 @@ class Entry {
             
             var ast = preprocessAst( markdown.parse( content, markdownEnvironment ) );
             var payload = generatePayload( markdownEnvironment );
-            trace( payload );
+
             js.node.Fs.writeFile('$cwd/$output'.normalize(), tink.Json.stringify(payload), function(error) {
-                trace(error);
+                if (error != null) trace(error);
             });
 
         });
         
     }
 
-    private function preprocessAst(ast:Array<Token>):Array<Token> {
+    private function preprocessAst(ast:Array<MarkdownIt.Token>):Array<MarkdownIt.Token> {
         // Look for `[“”]: ""` and remove.
         var slice = ast.slice(0,3);
 
         switch (slice) {
             case [{type:'paragraph_open'}, {content:_.startsWith('[“”]') => true}, {type:'paragraph_close'}]:
                 //trace( 'removing ast' );
-                //for (s in slice) trace( s );
                 ast = ast.splice( 3, ast.length );
                 
             case _:
-                //trace( slice );
+                
                 
         }
 
@@ -289,31 +236,31 @@ class Entry {
     }
     
     private function generatePayload(input:DynamicAccess<DynamicAccess<DynamicAccess<String>>>):Payload {
-        var paths = [
-            ['references', '_TEMPLATE', 'href'] => function(values) payload.template = values[0],
-            ['references', 'TEMPLATE', 'href'] => function(values) payload.template = values[0],
-            ['references', 'DATE', 'title'] => function(values) {
+        var paths:Map<Array<String>, Function> = [
+            [Ref, '_$Template', Href] => function(values) payload.template = values[0],
+            [Ref, Template, Href] => function(values) payload.template = values[0],
+            [Ref, Date, Title] => function(values) {
                 payload.created.raw = values[0];
                 payload.created.pretty = formattedDate(values[0]);
             },
-            ['references', 'MODIFIED', 'title'] => function(values) {
+            [Ref, Modified, Title] => function(values) {
                 payload.modified.raw = values[0];
                 payload.modified.pretty = formattedDate(values[0]);
             },
-            ['references', 'PUBLISHED', 'title'] => function(values) {
+            [Ref, Published, Title] => function(values) {
                 payload.published.raw = values[0];
                 payload.published.pretty = formattedDate(values[0]);
             },
-            ['references', 'DESCRIPTION', 'title'] => function(values) {
+            [Ref, Description, Title] => function(values) {
                 payload.description = values[0];
             },
-            ['references', 'AUTHOR'] => function(values:Array<String>) {
+            [Ref, Author] => function(values:Array<String>) {
                 for (value in values) {
                     var object = haxe.Json.parse(value);
                     payload.authors.push( { display:object.title, url:object.href } );
                 }
             },
-            ['references', 'CONTRIBUTORS'] => function(values:Array<String>) {
+            [Ref, Contributor] => function(values:Array<String>) {
                 for (value in values) {
                     var object = haxe.Json.parse(value);
                     payload.contributors.push( { display:object.title, url:object.href } );
@@ -355,7 +302,7 @@ class Entry {
         }
         
         // Move to external file or make available via command line or environment?
-        if (payload.authors.length == 0) payload.authors.push( { display:'Skial Bainn', url:'//twitter.com/skial' } );
+        if (payload.authors.length == 0) payload.authors.push( { display:SkialBainn, url:TwitterSkial } );
 
         var _modified = this.input;
         if (payload.input.raw == '') payload.input = {
@@ -376,29 +323,6 @@ class Entry {
         return payload;
     }
 
-}
-
-// @see https://github.com/markdown-it/markdown-it/blob/master/lib/token.js
-typedef Token = {
-    var type:String;
-    var tag:String;
-    var attrs:Array<Array<Dynamic>>;
-    var map:Array<Int>;
-    var nesting:NestingLevel;
-    var level:Int;
-    var children:Array<Token>;
-    var content:String;
-    var markup:String;
-    var info:String;
-    var meta:Dynamic;
-    var block:Bool;
-    var hidden:Bool;
-}
-
-@:enum abstract NestingLevel(Int) from Int to Int {
-    var Opening = 1;
-    var SelfClosing = 0;
-    var Closing = -1;
 }
 
 typedef EmojiData = {
