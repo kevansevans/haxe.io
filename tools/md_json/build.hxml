@@ -1,0 +1,20 @@
+-lib b.e_cmd
+-lib unifill
+-lib hxnodejs
+-lib thx.core
+-lib tink_json
+-lib thx.format
+
+-cp src
+
+-debug
+-dce full
+
+-D js-es=6
+#-D cmd-verbose-macro
+-D analyzer-optimize
+
+--each
+
+-main Entry
+-js bin/md-json.js
