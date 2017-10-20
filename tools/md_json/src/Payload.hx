@@ -11,7 +11,7 @@ using unifill.Unifill;
         return new Payload(
             {raw:'', directory:'', parts:[], filename:'', extension:''},
             {raw:'', directory:'', parts:[], filename:'', extension:''},'',
-            {raw:'', pretty:''},{raw:'', pretty:''},{raw:'', pretty:''},[],'',[],[],{}
+            {raw:'', pretty:''},{raw:'', pretty:''},{raw:'', pretty:''},[],'',[],[]/*,{}*/
         );
     }
 
@@ -25,9 +25,9 @@ using unifill.Unifill;
     public var description:String;
     public var authors:Array<Person>;
     public var contributors:Array<Person>;
-    public var extra:DynamicTink;
+    //public var extra:DynamicTink;
 
-    public inline function new(i, o, t, c, m, p, es, d, as, cs, ex) {
+    public inline function new(i, o, t, c, m, p, es, d, as, cs/*, ex*/) {
         input = i;
         output = o;
         template = t;
@@ -38,7 +38,7 @@ using unifill.Unifill;
         description = d;
         authors = as;
         contributors = cs;
-        extra = ex;
+        //extra = ex;
     }
 }
 
@@ -62,7 +62,7 @@ typedef Person = {
     var url:String;
 }
 
-abstract DynamicTink(Dynamic) from Dynamic {
+/*abstract DynamicTink(Dynamic) from Dynamic {
     
     @:to public inline function toTinkJson():Representation<Array<Int>> {
         var str = haxe.Serializer.run(this);
@@ -73,4 +73,4 @@ abstract DynamicTink(Dynamic) from Dynamic {
         return haxe.Unserializer.run( r.get().map(function(i) return CodePoint.fromInt(i).toString()).join('') );
     }
     
-}
+}*/
