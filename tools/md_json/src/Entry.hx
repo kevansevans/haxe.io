@@ -21,13 +21,14 @@ using Reflect;
 using StringTools;
 using thx.Objects;
 using haxe.io.Path;
+using tink.CoreApi;
 using unifill.Unifill;
 
 class Entry {
 
     public static function main() {
         var entry = new Entry();
-        Cli.process( entry, Sys.args(), Sys.environment() );//.handle( Cli.exit );
+        Cli.process( entry, Sys.args(), Sys.environment() ).handle( Cli.exit );
     }
 
     //
@@ -56,36 +57,25 @@ class Entry {
     private var twemoji:Dynamic;
 
     // Final information payload.
-    private var payload:Payload = {
-        input:{raw:'', directory:'', parts:[], filename:'', extension:''},
-        output:{raw:'', directory:'', parts:[], filename:'', extension:''},
-        template:'',
-        created:{raw:'', pretty:''},
-        modified:{raw:'', pretty:''},
-        published:{raw:'', pretty:''},
-        edits:[],
-        description: '',
-        authors:[],
-        contributors:[],
-        extra:{},
-    };
+    private var payload = Payload.make();
 
     public function new() {}
 
-    @:cmd public function initialize() {
+    @:init public function initialize() {
         if (input == '' || output == '') {
             Sys.println('Input/Output needs to be set.');
-            return;
+            return Future.sync(Noise);
 
         }
         
         input = input.normalize();
         output = output.normalize();
 
-        try init() catch(e:Any) trace(e, haxe.CallStack.toString(haxe.CallStack.exceptionStack()));
+        return process();
     }
 
-    private function init() {
+    private function process() {
+        var future = Future.trigger();
         var options = {};
         // Pass extra options to markdownIt plugins.
         markdown = new MarkdownIt( { html: true, linkify: true, typographer: true } );
@@ -195,10 +185,12 @@ class Entry {
 
             js.node.Fs.writeFile('$cwd/$output'.normalize(), tink.Json.stringify(payload), function(error) {
                 if (error != null) trace(error);
+                future.trigger(Noise);
             });
 
         });
         
+        return future.asFuture();
     }
 
     private function preprocessAst(ast:Array<MarkdownIt.Token>):Array<MarkdownIt.Token> {

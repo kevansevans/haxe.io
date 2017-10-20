@@ -5,18 +5,41 @@ import tink.json.Representation;
 
 using unifill.Unifill;
 
-typedef Payload = {
-    var input:PathData;
-    var output:PathData;
-    var template:String;
-    var created:DateData;
-    var modified:DateData;
-    var published:DateData;
-    var edits:Array<String>;
-    var description:String;
-    var authors:Array<Person>;
-    var contributors:Array<Person>;
-    var extra:DynamicTink;
+@:structInit class Payload {
+
+    public static inline function make():Payload {
+        return new Payload(
+            {raw:'', directory:'', parts:[], filename:'', extension:''},
+            {raw:'', directory:'', parts:[], filename:'', extension:''},'',
+            {raw:'', pretty:''},{raw:'', pretty:''},{raw:'', pretty:''},[],'',[],[],{}
+        );
+    }
+
+    public var input:PathData;
+    public var output:PathData;
+    public var template:String;
+    public var created:DateData;
+    public var modified:DateData;
+    public var published:DateData;
+    public var edits:Array<String>;
+    public var description:String;
+    public var authors:Array<Person>;
+    public var contributors:Array<Person>;
+    public var extra:DynamicTink;
+
+    public inline function new(i, o, t, c, m, p, es, d, as, cs, ex) {
+        input = i;
+        output = o;
+        template = t;
+        created = c;
+        modified = m;
+        published = p;
+        edits = es;
+        description = d;
+        authors = as;
+        contributors = cs;
+        extra = ex;
+    }
 }
 
 typedef Raw = {
