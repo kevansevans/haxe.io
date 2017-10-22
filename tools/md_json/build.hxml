@@ -7,7 +7,7 @@
 
 -cp src
 
--debug
+#-debug
 -dce full
 
 -D js-es=6

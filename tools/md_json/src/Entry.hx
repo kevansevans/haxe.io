@@ -7,28 +7,21 @@ import uhx.sys.Cli;
 import js.node.Fs.*;
 import thx.DateTime;
 import js.Node.process;
-import haxe.Serializer;
 import js.node.Crypto.*;
-import haxe.Unserializer;
-import unifill.CodePoint;
 import haxe.ds.StringMap;
 import haxe.DynamicAccess;
 import thx.format.DateFormat;
-import tink.json.Representation;
 import haxe.Constraints.Function;
 
 using Reflect;
 using StringTools;
-using thx.Objects;
 using haxe.io.Path;
 using tink.CoreApi;
-using unifill.Unifill;
 
 class Entry {
 
     public static function main() {
-        var entry = new Entry();
-        Cli.process( entry, Sys.args(), Sys.environment() ).handle( Cli.exit );
+        Cli.process( new Entry(), Sys.args(), Sys.environment() ).handle( Cli.exit );
     }
 
     //
@@ -150,7 +143,6 @@ class Entry {
         for (key in emoji.keys()) {
             var data = emoji.get( key );
             var shortcode = data.shortname.substring(1, data.shortname.length-1);
-            //trace( data, shortcode );
             var unicode = emojione.convert(data.unicode);
             
             if (!emojies_defs.exists( shortcode )) emojies_defs.set( shortcode, unicode );
@@ -177,13 +169,13 @@ class Entry {
             return twemoji.parse(token[idx].content, {ext:'.svg', base:'/twemoji/', folder:'svg'});
         };
         
-        js.node.Fs.readFile('$cwd/$input'.normalize(), {encoding:'utf8'}, function(error, content) {
+        readFile('$cwd/$input'.normalize(), {encoding:'utf8'}, function(error, content) {
             if (error != null) trace( error );
             
             var ast = preprocessAst( markdown.parse( content, markdownEnvironment ) );
             var payload = generatePayload( markdownEnvironment );
 
-            js.node.Fs.writeFile('$cwd/$output'.normalize(), tink.Json.stringify(payload), function(error) {
+            writeFile('$cwd/$output'.normalize(), tink.Json.stringify(payload), function(error) {
                 if (error != null) trace(error);
                 future.trigger(Noise);
             });
@@ -199,7 +191,7 @@ class Entry {
 
         switch (slice) {
             case [{type:'paragraph_open'}, {content:_.startsWith('[“”]') => true}, {type:'paragraph_close'}]:
-                //trace( 'removing ast' );
+                //'removing ast'
                 ast = ast.splice( 3, ast.length );
                 
             case _:
