@@ -1,0 +1,98 @@
+{
+    "entries":[
+        {
+            "name": "OpenFL",
+            "dependencies": [],
+            "url": "http://www.openfl.org/",
+            "repo": "https://github.com/openfl",
+            "logo": "",
+            "social":[
+                "https://twitter.com/open_fl",
+                "https://www.facebook.com/OpenFL/"
+            ],
+            "authors": [
+                "Joshua Granick"
+            ],
+            "target": {
+                "platforms": ["windows", "osx", "linux", "ios", "android", "html5", "flash"],
+                "languages": ["cpp", "javascript"]
+            },
+            "sectors": [
+                "gaming"
+            ],
+            "lastChecked": "22-10-2017",
+            "lastUpdated": ""
+        },
+        {
+            "name": "HaxeFlixel",
+            "dependencies": [
+                "OpenFL"
+            ],
+            "url": "http://haxeflixel.com/",
+            "repo": "https://github.com/HaxeFlixel",
+            "logo": "",
+            "social":[
+                "https://twitter.com/haxeflixel",
+                "https://www.facebook.com/haxeflixel/"
+            ],
+            "authors": [
+                "@Zaphod"
+            ],
+            "lastChecked": "22-10-2017",
+            "lastUpdated": ""
+
+        },
+        {
+            "name": "HaxePunk",
+            "dependencies": [
+                "OpenFL"
+            ],
+            "url": "http://haxepunk.com/",
+            "repo": "https://github.com/haxepunk",
+            "logo": "",
+            "social":[
+                "https://twitter.com/haxepunk"
+            ],
+            "authors": [
+                "Matt Tuttle", "Ben Morris"
+            ],
+            "lastChecked": "22-10-2017",
+            "lastUpdated": ""
+        },
+        {
+            "name": "Kha",
+            "dependencies": [],
+            "url": "http://kha.tech/",
+            "repo": "https://github.com/Kode/Kha",
+            "logo": "",
+            "social":[
+                "https://twitter.com/robdangerous"
+            ],
+            "authors": [
+                "Robert Konrad"
+            ],
+            "target": {
+                "platforms": ["windows", "osx", "linux", "ios", "android", "html5", "webgl", "flash", "tizen", "unity3d", "playstation vita", "xbox 360"],
+                "languages": ["cpp", "csharp", "java", "javascript"]
+            },
+            "sectors": [
+                "gaming", "media"
+            ],
+            "lastChecked": "22-10-2017",
+            "lastUpdated": ""
+        },
+    ],
+    "frameworks": [
+        "openfl",
+        "haxeflixel",
+        "haxepunk",
+        "kha",
+        "amormy3d",
+        "nme",
+        "heapsio",
+        "haxeui",
+        "tinkerbell",
+        "haxe-js-modular",
+        "webpack-haxe-loader"
+    ]
+}
