@@ -202,6 +202,98 @@
                 }
             ],
             "lastChecked": "23-10-2017"
+        },
+        {
+            "name": "Prezi",
+            "logo": "",
+            "url": "https://prezi.com/",
+            "social": [
+                "https://twitter.com/prezi",
+                "https://www.facebook.com/prezicom/"
+            ],
+            "target": {
+                "languages": ["js"],
+                "platforms": ["html5"],
+                "frameworks": []
+            },
+            "proof": [
+                "https://engineering.prezi.com/how-and-why-prezi-turned-to-javascript-56e0ca57d135"
+            ],
+            "sectors": [
+                "presentation"
+            ],
+            "products": [],
+            "lastChecked": "23-10-2017"
+        },
+        {
+            "name": "Motion Twin",
+            "logo": "",
+            "url": "http://motion-twin.com/en/",
+            "social": [
+                "https://www.twitter.com/motiontwin",
+                "https://www.facebook.com/motiontwin"
+            ],
+            "target": {
+                "languages": [],
+                "platforms": [],
+                "frameworks": []
+            },
+            "proof": [
+                "http://tech.motion-twin.com/",
+                "https://github.com/motion-twin",
+                "https://en.wikipedia.org/wiki/Motion_Twin"
+            ],
+            "sectors": [
+                "games"
+            ],
+            "products": [],
+            "lastChecked": "23-10-2017"
+        },
+        {
+            "name": "Docler Holding",
+            "logo": "",
+            "url": "https://www.doclerholding.com/en/main/",
+            "social": [
+                "https://twitter.com/DoclerHoldingLU",
+                "https://www.facebook.com/DoclerHoldingLU/"
+            ],
+            "target": {
+                "languages": [],
+                "platforms": [],
+                "frameworks": []
+            },
+            "proof": [
+                "https://haxe.io/roundups/400/#NewsandArticles",
+                "https://www.doclerholding.com/en/news/company/1179/",
+                "https://www.facebook.com/DoclerHoldingLU/posts/1040983726009786",
+                "https://fr.slideshare.net/francisbourre/my-10-favorite-haxe-language-features-in-30-mins-64489951"
+            ],
+            "sectors": [
+                "multinational", "film", "venture capital"
+            ],
+            "products": [],
+            "lastChecked": "23-10-2017"
+        },
+        {
+            "name": "Massive Interactive",
+            "logo": "",
+            "url": "https://massive.co/",
+            "social": [
+                "https://twitter.com/Massive_Voice"
+            ],
+            "target": {
+                "languages": [],
+                "platforms": [],
+                "frameworks": []
+            },
+            "proof": [
+                "https://github.com/massiveinteractive"
+            ],
+            "sectors": [
+                "tv", "film"
+            ],
+            "products": [],
+            "lastChecked": "23-10-2017"
         }
     ],
     "companies":[
@@ -212,6 +304,10 @@
         "GameSys",
         "TiVo",
         "Mino Monsters",
-        "Level Up Labs"
+        "Level Up Labs",
+        "Prezi",
+        "Motion Twin",
+        "Docler Holding",
+        "Massive Interactive"
     ]
 }
