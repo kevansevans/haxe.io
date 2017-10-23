@@ -60,6 +60,23 @@
             "lastUpdated": ""
         },
         {
+            "name": "Stencyl",
+            "dependencies": [
+                "OpenFL"
+            ],
+            "url": "http://www.stencyl.com/",
+            "logo": "",
+            "social":[
+                "http://www.twitter.com/Stencyl",
+                "http://www.facebook.com/stencyl"
+            ],
+            "authors": [
+                "Stencyl, LLC"                
+            ],
+            "lastChecked": "23-10-2017",
+            "lastUpdated": ""
+        },
+        {
             "name": "Kha",
             "dependencies": [],
             "url": "http://kha.tech/",
@@ -81,6 +98,114 @@
             "lastChecked": "22-10-2017",
             "lastUpdated": ""
         },
+        {
+            "name": "Armory",
+            "dependencies": [
+                "Kha"
+            ],
+            "url": "http://armory3d.org/",
+            "repo": "https://github.com/armory3d",
+            "logo": "",
+            "social":[
+                "https://twitter.com/armory3d"
+            ],
+            "authors": [
+                "Lubos Lenco"
+            ],
+            "lastChecked": "23-10-2017",
+            "lastUpdated": ""
+        },
+        {
+            "name": "NME",
+            "dependencies": [],
+            "url": "https://github.com/haxenme",
+            "repo": "https://github.com/haxenme",
+            "logo": "",
+            "social":[
+                "https://twitter.com/gamehaxe"
+            ],
+            "authors": [
+                "Hugh Sanderson"
+            ],
+            "target": {
+                "platforms": ["windows", "osx", "linux", "ios", "android", "flash", "webos"],
+                "languages": ["cpp"]
+            },
+            "sectors": [
+                "gaming", "media"
+            ],
+            "lastChecked": "23-10-2017",
+            "lastUpdated": ""
+        },
+        {
+            "name": "Heaps",
+            "dependencies": [],
+            "url": "http://heaps.io/",
+            "repo": "https://github.com/HeapsIO/heaps",
+            "logo": "",
+            "social":[
+                "https://twitter.com/gamehaxe"
+            ],
+            "authors": [
+                "Nicolas Cannasse"
+            ],
+            "target": {
+                "platforms": ["windows", "osx", "linux", "ios", "android", "flash", "webgl"],
+                "languages": ["hashlink", "javascript"]
+            },
+            "sectors": [
+                "gaming"
+            ],
+            "lastChecked": "23-10-2017",
+            "lastUpdated": ""
+        },
+        {
+            "name": "HaxeUI",
+            "dependencies": [
+                "OpenFL", "Kha", "NME"
+            ],
+            "url": "http://www.haxeui.org/",
+            "repo": "https://github.com/haxeui/",
+            "logo": "",
+            "social":[
+                "https://twitter.com/IanHarrigan1982",
+                "http://www.facebook.com/haxeui"
+            ],
+            "authors": [
+                "Ian Harrigan"
+            ],
+            "target": {
+                "platforms": ["windows", "osx", "linux", "ios", "android", "flash", "webgl"],
+                "languages": []
+            },
+            "sectors": [
+                "gaming", "ui"
+            ],
+            "lastChecked": "23-10-2017",
+            "lastUpdated": ""
+        },
+        {
+            "name": "Tinkerbell",
+            "dependencies": [],
+            "url": "https://haxetink.github.io/#/",
+            "repo": "https://github.com/haxetink",
+            "logo": "",
+            "social":[
+                "https://twitter.com/back2dos"
+            ],
+            "authors": [
+                "Juraj Kirchheim", "Kevin Leung", "Ben Merckx"
+            ],
+            "target": {
+                "platforms": ["windows", "osx", "linux", "ios", "android", "html5", "webgl"],
+                "languages": ["all"]
+            },
+            "sectors": [
+                "web routing", "parser", "template", "dev ux"
+            ],
+            "lastChecked": "23-10-2017",
+            "lastUpdated": ""
+        },
     ],
     "frameworks": [
         "openfl",
@@ -91,8 +216,6 @@
         "nme",
         "heapsio",
         "haxeui",
-        "tinkerbell",
-        "haxe-js-modular",
-        "webpack-haxe-loader"
+        "tinkerbell"
     ]
 }
