@@ -201,7 +201,7 @@
                 "languages": ["all"]
             },
             "sectors": [
-                "web routing", "parser", "template", "dev ux"
+                "web", "routing", "parser", "template", "dev ux"
             ],
             "lastChecked": "23-10-2017",
             "lastUpdated": ""
