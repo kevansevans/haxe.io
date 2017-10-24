@@ -82,7 +82,9 @@ class Main {
         html.sort( (a,b) -> sub(a) > sub(b) ? -1 : 1 );
 
         var fileList:FileList = { b:paths[0].normalize(), p:html };
-        sys.io.File.saveContent( '${Sys.getCwd()}/$output', tink.Json.stringify(fileList) );
+        var json:haxe.DynamicAccess<FileList> = {};
+        json.set('${output.withoutDirectory().withoutExtension()}_list', fileList);
+        sys.io.File.saveContent( '${Sys.getCwd()}/$output', tink.Json.stringify(json) );
     }
 
 }

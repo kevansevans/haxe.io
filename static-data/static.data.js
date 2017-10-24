@@ -169,9 +169,25 @@ Main.main = function() {
 		}
 	});
 	var fileList = { b : haxe_io_Path.normalize(paths[0]), p : html};
-	js_node_Fs.writeFileSync("" + process.cwd() + "/" + output,new tink_json_Writer0().write(fileList));
+	var json = { };
+	json["" + haxe_io_Path.withoutExtension(haxe_io_Path.withoutDirectory(output)) + "_list"] = fileList;
+	js_node_Fs.writeFileSync("" + process.cwd() + "/" + output,new tink_json_Writer0().write(json));
 };
 Math.__name__ = true;
+var Reflect = function() { };
+Reflect.__name__ = true;
+Reflect.fields = function(o) {
+	var a = [];
+	if(o != null) {
+		var hasOwnProperty = Object.prototype.hasOwnProperty;
+		for( var f in o ) {
+		if(f != "__id__" && f != "hx__closures__" && hasOwnProperty.call(o,f)) {
+			a.push(f);
+		}
+		}
+	}
+	return a;
+};
 var Std = function() { };
 Std.__name__ = true;
 Std.parseInt = function(x) {
@@ -254,6 +270,11 @@ haxe_io_Path.__name__ = true;
 haxe_io_Path.withoutExtension = function(path) {
 	var s = new haxe_io_Path(path);
 	s.ext = null;
+	return s.toString();
+};
+haxe_io_Path.withoutDirectory = function(path) {
+	var s = new haxe_io_Path(path);
+	s.dir = null;
 	return s.toString();
 };
 haxe_io_Path.normalize = function(path) {
@@ -547,7 +568,24 @@ tink_json_Writer0.prototype = $extend(tink_json_BasicWriter.prototype,{
 	}
 	,write: function(value) {
 		this.init();
-		this.parse0(value);
+		var first = true;
+		this.buf += "{";
+		var _g = 0;
+		var _g1 = Reflect.fields(value);
+		while(_g < _g1.length) {
+			var k = _g1[_g];
+			++_g;
+			if(first) {
+				first = false;
+			} else {
+				this.buf += ",";
+			}
+			var s = JSON.stringify(k);
+			this.buf += s;
+			this.buf += ":";
+			this.parse0(value[k]);
+		}
+		this.buf += "}";
 		return this.buf.toString();
 	}
 });
