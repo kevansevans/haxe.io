@@ -16,6 +16,13 @@
     <link rel="import" href="/templates/footer.html" />
 </head>
 <body>
+	<input type="checkbox" id="news" name="nav-group">
+	<input type="checkbox" id="ludumdare" name="nav-group">
+	<input type="checkbox" id="releases" name="nav-group">
+	<input type="checkbox" id="events" name="nav-group">
+	<input type="checkbox" id="speaker" name="nav-group">
+	<input type="checkbox" id="videos" name="nav-group">
+	<input type="checkbox" id="articles" name="nav-group">
     <document-head>
         <hio-metas></hio-metas>
         <title>Haxe.io — News And Information For Haxe Developers</title>
@@ -27,14 +34,22 @@
 	<hio-header.nav></hio-header.nav>
 	<main>
 		<ul>
-            <json-data select=".p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
+            <json-data select=".roundups_list .p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
                 <li itemtype="http://schema.org/Article" :id="r{*}" itemscope="">
                     <a :title="Haxe Roundup № {*}" :href="/roundups/{*}/">
                         <h1 itemprop="headline"><span :to="Haxe Roundup № {*}"></span></h1>
                     </a>
                     <time dateCreated="$date" pubdate="" datetime="$date"></time>
                 </li>
-            </json-data>
+			</json-data>
+			<json-data select=".ludumdare_list .p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
+                <li class="ludumdare" itemtype="http://schema.org/Article" :id="r{*}" itemscope="">
+                    <a :title="Ludum Dare {*} Roundup" :href="/ld/{*}/">
+                        <h1 itemprop="headline"><span :to="The Ludum Dare {*} Roundup"></span></h1>
+                    </a>
+                    <time dateCreated="$date" pubdate="" datetime="$date"></time>
+                </li>
+			</json-data>
 		</ul>
 	</main>
 	<footer class="grid">
