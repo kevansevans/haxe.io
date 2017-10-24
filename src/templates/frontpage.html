@@ -6,7 +6,8 @@
     <link rel="import" href="document.head.html" />
     <link rel="import" href="/templates/json.data.html" />
     <link rel="import" href="/templates/metas.html" />
-    <link rel="stylesheet" type="text/css" href="/css/frontpage.css" />
+	<link rel="stylesheet" type="text/css" href="/css/frontpage2.css" />
+	<link rel="import" href="/templates/header.nav.html" />
     <link rel="import" href="/templates/stylesheets.html" />
     <link rel="import" href="/templates/favicon.html" />
     <link rel="import" href="/templates/metas.social.html" />
@@ -23,64 +24,10 @@
         <hio-icons></hio-icons>
         <hio-scripts></hio-scripts>
     </document-head>
-	<input type="checkbox" id="news" name="nav-group">
-	<input type="checkbox" id="ludumdare" name="nav-group">
-	<input type="checkbox" id="releases" name="nav-group">
-	<input type="checkbox" id="events" name="nav-group">
-	<input type="checkbox" id="speaker" name="nav-group">
-	<input type="checkbox" id="videos" name="nav-group">
-	<input type="checkbox" id="articles" name="nav-group">
-	<header class="grid">
-		<div class="grid-1-1">
-			<a type="image/logo" href="/">
-				<svg viewBox="0 0 320 320" enable-background="new">
-					<defs>
-						<symbol id="external-link" viewBox="0 0 100 125">
-                            <path d="m90.474 5.04h-28.685c-2.3 0-4.164 1.864-4.164 4.164s1.864 4.164 4.164 4.164h19.095l-40.864 40.864c-1.627 1.626-1.627 4.263 0 5.889 0.813 0.813 1.879 1.22 2.944 1.22s2.131-0.407 2.944-1.22l40.402-40.403v18.17c0 2.3 1.864 4.164 4.164 4.164s4.164-1.864 4.164-4.164v-28.684c0-2.3-1.864-4.164-4.164-4.164z"/><path d="m76.071 46.976c-2.3 0-4.164 1.864-4.164 4.164v32.852c0 1.505-1.271 2.776-2.776 2.776h-53.09c-1.505 0-2.776-1.271-2.776-2.776v-53.09c0-1.505 1.271-2.776 2.776-2.776h32.968c2.3 0 4.164-1.864 4.164-4.164s-1.864-4.164-4.164-4.164h-32.968c-6.123 0-11.104 4.981-11.104 11.104v53.09c0 6.123 4.981 11.104 11.104 11.104h53.09c6.123 0 11.104-4.981 11.104-11.104v-32.852c0-2.299-1.864-4.164-4.164-4.164z"/>
-                        </symbol>
-					</defs>
-					<g>
-						<g id="a" transform="translate(-2,-2)">
-							<path stroke-width="15.6" stroke="#000" d="m93.7 25.3-68.4 68.3" stroke-linecap="round" fill="none"></path>
-							<path stroke-width="15.3" stroke="#000" id="b" d="m52.4 153 36.6-37" stroke-linecap="round" transform="translate(2)" fill="none"></path>
-							<path stroke-width="14" stroke="#000" d="m271 22.5-246 246" stroke-linecap="round" fill="none"></path>
-							<use height="1052.3622" y="0" x="0" xlink:href="#b" width="744.09448" transform="translate(60,-60)"></use>
-						</g>
-						<use height="1052.3622" y="0" x="0" xlink:href="#a" width="744.09448" transform="matrix(-1 0 0 -1 332 331)"></use>
-					</g>
-				</svg>
-			</a>
-			<div class="name">
-				<span class="long">haxe</span><span class="short">h</span><span class="long">.</span><span class="short dot">&CenterDot;</span><span>io</span>
-			</div>
-		</div>
-		<nav class="tabs">
-			<ul>
-				<li>
-					<p>Filter by</p>
-					<svg class="filter enabled" viewBox="0 0 16 20">
-						<path d="m14.5 0h-12c-1.375 0-1.705 0.795-0.732 1.768l5.232 5.232v8c0 0.55 0.318 0.682 0.707 0.293l1.586-1.586c0.389-0.389 0.707-1.157 0.707-1.707v-5l5.232-5.232c0.972-0.973 0.643-1.768-0.732-1.768z"/>
-					</svg>
-					<svg class="filter disabled" viewBox="0 -1 16 20">
-						<g transform="translate(.25424 -.084746)">
-							<path d="m14.246 0.050847-7.5 7.5v5.5c0 0.55 0.375 0.75 0.832 0.445l1.336-0.891c0.458-0.304 0.832-1.004 0.832-1.554v-4l5.232-5.232c0.972-0.973 0.643-1.768-0.732-1.768z"/>
-							<path d="m12.152-0.85615c-0.048-0.108-0.11-0.211-0.199-0.3-0.391-0.391-1.023-0.391-1.414 0l-1.207 1.207h-7.086c-1.375 0-1.705 0.795-0.732 1.768l3.025 3.025-3.5 3.5c-0.391 0.391-0.391 1.023 0 1.414 0.195 0.195 0.451 0.293 0.707 0.293s0.512-0.098 0.707-0.293l0.707-0.707 8.793-8.793c0.302-0.302 0.364-0.746 0.199-1.114z"/>
-						</g>
-					</svg>
-				</li>
-				<li><label for="news" onclick=";"><span class="long">Weekly </span><span class="short">Wkly </span>News</label></li>
-				<li><label for="articles" onclick=";">Art<span class="short">.</span><span class="long">icles</span></label></li>
-				<li><label for="releases" onclick=";">Rel<span class="short">.</span><span class="long">eases</span></label></li>
-				<li><label for="events" onclick=";"><span class="short">Evnt</span><span class="long">Events</span></label></li>
-				<li><label for="ludumdare" onclick=";"><span class="long">Ludum Dare</span><span class="short">LD</span></label></li>
-				<li><label for="speaker" onclick=";"><span class="long">Developer Interviews</span><span class="short">Bios</span></li>
-				<li><label for="videos" onclick=";">Vid<span class="long">eo</span>s</li>
-			</ul>
-		</nav>
-	</header>
+	<hio-header.nav></hio-header.nav>
 	<main>
 		<ul>
-            <json-data select=".p" each>
+            <json-data select=".p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
                 <li itemtype="http://schema.org/Article" :id="r{*}" itemscope="">
                     <a :title="Haxe Roundup № {*}" :href="/roundups/{*}/">
                         <h1 itemprop="headline"><span :to="Haxe Roundup № {*}"></span></h1>

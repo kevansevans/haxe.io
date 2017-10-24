@@ -27,3 +27,8 @@
 
 -main uhx.pati.ConvertTag
 -js ../src/js/component.js
+
+--next
+
+-main uhx.pati.JsonData
+-js ../src/js/json.data.js
