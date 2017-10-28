@@ -37,25 +37,36 @@
 		<p>
 			Get the latest news, jobs, tutorials and events covered weekly,
 			for Haxe, a <strong>high level, cross-platform, strongly typed</strong> programming language. 
-		</p>
-		<ul>
+        </p>
+        <ul class="languages">
+            <li class="icon language haxe"><img src="/svg/haxe.svg"></li>
+            <json-data select="*[name=javascript], *[name=nodejs], *[name=python], *[name=java], *[name=php], *[name=cplusplus], *[name=csharp]" each>
+                <li :class="icon language {.name}"><img :title="{.name}" :src="/devicon/icons/{.name}/{.name}-plain.svg"></li>
+            </json-data>
+            <json-data select="*[name=lua]" each>
+                <li :class="icon language {.name}"><img :title="{.name}" :src="/svg/devicon/icons/{.name}/{.name}-plain.svg"></li>
+            </json-data>
+        </ul>
+		<ul class="grid content articles">
             <json-data select=".roundups_list .p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
-                <li itemtype="http://schema.org/Article" :id="r{*}" itemscope="">
+                <li class="roundups" itemtype="http://schema.org/Article" :id="r{*}" itemscope="">
                     <a :title="Haxe Roundup № {*}" :href="/roundups/{*}/">
-                        <h1 itemprop="headline"><span :to="Haxe Roundup № {*}"></span></h1>
+                        <h1 itemprop="headline"><span class="full">Haxe </span><span class="short">Roundup </span><span class="full">№ </span><span class="optional">#</span><span :to="{*}"></span></h1>
                     </a>
                     <time dateCreated="$date" pubdate="" datetime="$date"></time>
                 </li>
 			</json-data>
-			<json-data select=".ludumdare_list .p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
-                <li class="ludumdare" itemtype="http://schema.org/Article" :id="r{*}" itemscope="">
+        </ul>
+        <ul class="grid content jams">
+            <json-data select=".ludumdare_list .p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
+                <li class="ludumdare" itemtype="http://schema.org/Article" :id="ld{*}" itemscope="">
                     <a :title="Ludum Dare {*} Roundup" :href="/ld/{*}/">
-                        <h1 itemprop="headline"><span :to="The Ludum Dare {*} Roundup"></span></h1>
+                        <h1 itemprop="headline"><span class="full">The Ludum Dare </span><span class="short">LD</span><span :to="{*} Roundup"></span></h1>
                     </a>
                     <time dateCreated="$date" pubdate="" datetime="$date"></time>
                 </li>
 			</json-data>
-		</ul>
+        </ul>
 	</main>
 	<footer></footer>
 </body>

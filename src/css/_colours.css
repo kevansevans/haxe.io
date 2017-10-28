@@ -1,0 +1,33 @@
+/* Baby powder `FFFDF9` */
+:root {
+    --cs-bg-L2: #B2AB9C;
+    --cs-bg-L1: #DFFFF0;
+    --cs-bg-Core: #FFFDF9;
+    --cs-bg-R1: #C4B3CC;
+    --cs-bg-R2: #ADA1B2;
+    --cs-variance: 2;
+
+    /*--bgScalePlus1_L2: #B9B2A5;
+    --bgScalePlus1_L1: #E1FFF1;
+    --bgScalePlus1_Core: #FFFDFA;
+    --bgScalePlus1_R1: #C9B9D0;
+    --bgScalePlus1_R2: #B4A9B9;
+
+    --bgScalePlus2_L2: #C0BAAE;
+    --bgScalePlus2_L1: #E4FFF2;
+    --bgScalePlus2_Core: #FFFDFA;
+    --bgScalePlus2_R1: #CEC0D5;
+    --bgScalePlus2_R2: #BBB2C0;
+
+    --bgScaleNeg1_L2: #A29C8E;
+    --bgScaleNeg1_L1: #CBE8DB;
+    --bgScaleNeg1_Core: #E8E6E3;
+    --bgScaleNeg1_R1: #B3A3BA;
+    --bgScaleNeg1_R2: #9E93A2;
+
+    --bgScaleNeg2_L2: #928C80;
+    --bgScaleNeg2_L1: #B7D1C5;
+    --bgScaleNeg2_Core: #D1D0CC;
+    --bgScaleNeg2_R1: #A193A7;
+    --bgScaleNeg2_R2: #8E8492;*/
+}
