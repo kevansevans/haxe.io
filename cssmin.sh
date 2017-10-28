@@ -33,7 +33,7 @@ mkdir -p $MIN_DIR
 mkdir -p $OPT_DIR
 
 echo "running postcss"
-postcss -u autoprefixer --autoprefixer.browsers "> 5% in my stats" --autoprefixer.stats "./browserstats/latest.json" -o $BIN $INPUT
+postcss -u postcss-import -u postcss-color-scale -u postcss-cssnext -o $BIN $INPUT
 echo "copying post processed css to min"
 cp -u $BIN $MIN
 echo "running cssnano"

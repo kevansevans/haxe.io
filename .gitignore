@@ -9,6 +9,8 @@ js-components/
 src/js/
 .haxelib/
 lighthouse/
+src/devicon/
+src/twemoji/
 secrets.json
 
 # NodeJS specific
