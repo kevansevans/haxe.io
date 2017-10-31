@@ -76,12 +76,19 @@ nav.header--nav {
         align-items: center;
 
         &.left {
-            /*padding-left: 8vw;*/
+            & li {
+                border-left: 1px solid var(--bg_left_b14);
 
-            & li:first-of-type {
-                border: none;
-                padding: 0 1em;
-                font-size: inherit;
+                &:first-of-type {
+                    border: none;
+                    padding: 0 1em;
+                    font-size: inherit;
+                }
+                
+                &:last-of-type {
+                    border-right: 1px solid var(--bg_left_b14);
+                }
+
             }
 
         }

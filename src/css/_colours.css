@@ -19,7 +19,7 @@
 
     /* Base colour variances */
     
-    @for $i from -30 to 30 {
+    @for $i from -40 to 40 {
         --bg_left_b$(i): cs($(i), background-L2);
         --bg_left_a$(i): cs($(i), background-L1);
         --bg_core$(i): cs($(i), background-core);
@@ -29,13 +29,13 @@
 
     /* Text colour variances */
 
-    @for $i from -30 to 30 {
+    @for $i from -40 to 40 {
         --text-core$(i): cs($(i), text-core);
     }
 
     /* Section variances */
 
-    @for $i from -30 to 30 {
+    @for $i from -40 to 40 {
         --section-articles$(i): cs($(i), section-articles);
         --section-ludumdare$(i): cs($(i), section-ludumdare);
         --section-videos$(i): cs($(i), section-videos);
