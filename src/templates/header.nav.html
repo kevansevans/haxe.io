@@ -1,5 +1,13 @@
 <link rel="import" href="/templates/logo.html" />
+<link rel="import" href="/templates/json.data.html" />
 <template data-prefix="hio" data-name="header.nav">
+    <input type="checkbox" id="news" name="nav-group">
+    <input type="checkbox" id="ludumdare" name="nav-group">
+    <input type="checkbox" id="releases" name="nav-group">
+    <input type="checkbox" id="events" name="nav-group">
+    <input type="checkbox" id="speaker" name="nav-group">
+    <input type="checkbox" id="videos" name="nav-group">
+    <input type="checkbox" id="articles" name="nav-group">
     <nav class="header--nav">
         <ul class="left">
             <li>
@@ -10,26 +18,23 @@
             <li>
                 <label for="articles" onclick=";">News</label>
             </li>
-            <li>
+            <!--<li>
                 <label for="releases" onclick=";">Releases</label>
-            </li>
+            </li>-->
             <li>
                 <label for="events" onclick=";">Events</label>
             </li>
-            <li>
+            <!--<li>
                 <label for="videos" onclick=";">Videos</label>
-            </li>
+            </li>-->
             <li>
                 <label for="ludumdare" onclick=";">Ludum Dare</label>
             </li>
         </ul>
         <ul class="right">
-            <li>
-                Twitter
-            </li>
-            <li>
-                Facebook
-            </li>
+            <json-data select="*[name=twitter], *[name=facebook]" each>
+                <li :class="icon social {.name}"><img :title="{.name}" :src="/devicon/icons/{.name}/{.name}-original.svg"></li>
+            </json-data>
         </ul>
     </nav>
 </template>

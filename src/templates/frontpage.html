@@ -2,8 +2,8 @@
 <head>
     <meta charset="utf-8" />  
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <link rel="import" href="document.body.html" />
-    <link rel="import" href="document.head.html" />
+    <link rel="import" href="/templates/document.body.html" />
+    <link rel="import" href="/templates/document.head.html" />
     <link rel="import" href="/templates/json.data.html" />
     <link rel="import" href="/templates/metas.html" />
 	<link rel="stylesheet" type="text/css" href="/css/frontpage2.css" />
@@ -17,13 +17,6 @@
     <link rel="import" href="/templates/footer.html" />
 </head>
 <body>
-	<input type="checkbox" id="news" name="nav-group">
-	<input type="checkbox" id="ludumdare" name="nav-group">
-	<input type="checkbox" id="releases" name="nav-group">
-	<input type="checkbox" id="events" name="nav-group">
-	<input type="checkbox" id="speaker" name="nav-group">
-	<input type="checkbox" id="videos" name="nav-group">
-	<input type="checkbox" id="articles" name="nav-group">
     <document-head>
         <hio-metas></hio-metas>
         <title>Haxe.io — News And Information For Haxe Developers</title>
@@ -47,26 +40,32 @@
                 <li :class="icon language {.name}"><img :title="{.name}" :src="/svg/devicon/icons/{.name}/{.name}-plain.svg"></li>
             </json-data>
         </ul>
-		<ul class="grid content articles">
-            <json-data select=".roundups_list .p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
-                <li class="roundups" itemtype="http://schema.org/Article" :id="r{*}" itemscope="">
-                    <a :title="Haxe Roundup № {*}" :href="/roundups/{*}/">
-                        <h1 itemprop="headline"><span class="full">Haxe </span><span class="short">Roundup </span><span class="full">№ </span><span class="optional">#</span><span :to="{*}"></span></h1>
-                    </a>
-                    <time dateCreated="$date" pubdate="" datetime="$date"></time>
-                </li>
-			</json-data>
-        </ul>
-        <ul class="grid content jams">
-            <json-data select=".ludumdare_list .p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
-                <li class="ludumdare" itemtype="http://schema.org/Article" :id="ld{*}" itemscope="">
-                    <a :title="Ludum Dare {*} Roundup" :href="/ld/{*}/">
-                        <h1 itemprop="headline"><span class="full">The Ludum Dare </span><span class="short">LD</span><span :to="{*} Roundup"></span></h1>
-                    </a>
-                    <time dateCreated="$date" pubdate="" datetime="$date"></time>
-                </li>
-			</json-data>
-        </ul>
+        <section>
+            <h2>News</h2>
+            <ul class="grid content articles">
+                <json-data select=".roundups_list .p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
+                    <li class="roundups" itemtype="http://schema.org/Article" :id="r{*}" itemscope="">
+                        <a :title="Haxe Roundup № {*}" :href="/roundups/{*}/">
+                            <h2 itemprop="headline"><span class="full">Haxe </span><span class="short">Roundup </span><span class="full">№ </span><span class="optional">#</span><span :to="{*}"></span></h2>
+                        </a>
+                        <time dateCreated="$date" pubdate="" datetime="$date"></time>
+                    </li>
+                </json-data>
+            </ul>
+        </section>
+        <section>
+            <h2>Game Jams</h2>
+            <ul class="grid content jams">
+                <json-data select=".ludumdare_list .p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
+                    <li class="ludumdare" itemtype="http://schema.org/Article" :id="ld{*}" itemscope="">
+                        <a :title="Ludum Dare {*} Roundup" :href="/ld/{*}/">
+                            <h2 itemprop="headline"><span class="full">The Ludum Dare </span><span class="short">LD</span><span :to="{*} Roundup"></span></h2>
+                        </a>
+                        <time dateCreated="$date" pubdate="" datetime="$date"></time>
+                    </li>
+                </json-data>
+            </ul>
+        </section>
 	</main>
 	<footer></footer>
 </body>

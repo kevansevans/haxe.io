@@ -1,168 +1,25 @@
+/* Run: 
+	postcss 
+		-u postcss-import 
+		-u postcss-for 
+		-u postcss-color-scale 
+		-u postcss-cssnext 
+		-w 
+		-o src\css\frontpage2.css src\css\frontpage2.postcss 
+*/
+@import "_global.css";
 @import "_colours.css";
+@import "_nav.css";
 
-h1, h2, h3, h4, h5, h6 {
-	text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-/* START NAV */
-
-html[class*="/frontpage"] nav.header--nav {
-	display: flex;
-    margin-bottom: .5em;
-	justify-content: space-between;
-    border-bottom: 1px solid rgba(189, 189, 189, 0.3);
-}
-
-html[class*="/frontpage"] nav.header--nav ul {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    font-weight: 700;
-    font-family: 'Open Sans', sans-serif;
-    list-style: none;
-    flex-direction: row;
-    flex-wrap: nowrap;
-	align-items: center;
-}
-
-html[class*="/frontpage"] nav.header--nav ul.left {
-	/*padding-left: 8vw;*/
-}
-
-html[class*="/frontpage"] nav.header--nav ul.right {
-	align-items: flex-end;
-	/*padding-right: 8vw;*/
-}
-
-html[class*="/frontpage"] nav.header--nav ul li {
-    padding: 1.5em 1em;
-    font-size: 0.8em;
-}
-
-html[class*="/frontpage"] nav.header--nav ul li label {
-	padding: 1.5em 0;
-}
-
-html[class*="/frontpage"] nav.header--nav ul.left li:first-of-type {
-	border: none;
-	padding: 0 1em;
-	font-size: inherit;
-}
-
-html[class*="/frontpage"] nav.header--nav [type="image/logo"] > svg {
-    min-width: 2em;
-    max-width: 2em;
-    min-height: 2em;
-    max-height: 2em;
-}
-
-html[class*="/frontpage"] [name="nav-group"][type="checkbox"] {
-	display: none;
-}
-
-html[class*="/frontpage"] .header--nav li label {
-	cursor: pointer;
-}
-
-.header--nav label[for="articles"]:hover {
-	border-bottom: 1px solid rgba(241,89,34, 0.5);
-}
-
-#articles:checked ~ .header--nav label[for="articles"] {
-	border-bottom: 2px solid rgba(241,89,34, 1);
-}
-
-.header--nav label[for="ludumdare"]:hover {
-	border-bottom: 1px solid rgba(119, 68, 204, 0.5);
-}
-
-#ludumdare:checked ~.header--nav label[for="ludumdare"] {
-	border-bottom: 2px solid rgba(119, 68, 204, 1);
-}
-
-.header--nav label[for="releases"]:hover {
-	border-bottom: 1px solid rgba(108, 198, 68, 0.5);
-}
-
-#releases:checked ~ .header--nav label[for="releases"] {
-	border-bottom: 2px solid rgba(108, 198, 68, 1);
-}
-
-.header--nav label[for="events"]:hover {
-	border-bottom: 1px solid rgba(255, 128, 0, 0.5);
-}
-
-#events:checked ~ .header--nav label[for="events"] {
-	border-bottom: 1px solid rgba(255, 128, 0, 1);
-}
-
-.header--nav label[for="speaker"]:hover {
-	border-bottom: 1px solid rgba(255, 128, 0, 1);
-}
-
-#speaker:checked ~ .header--nav label[for="speaker"] {
-	border-bottom: 2px solid rgba(255, 128, 0, 1);
-}
-
-.header--nav label[for="videos"]:hover {
-	border-bottom: 1px solid rgba(205, 32, 31, 0.5);
-}
-
-#videos:checked ~ .header--nav label[for="videos"] {
-	border-bottom: 2px solid rgba(205, 32, 31, 1);
-}
-
-#news:checked ~ main li:not([id^="r"]),
-#news:checked ~ main li[id^="release"] {
-	display: none;
-}
-
-#news:checked ~ main li[id^="e"] {
-	display: none;
-}
-
-#articles:checked ~ main li:not([itemtype*="Article"]),
-#articles:checked ~ main li.ludumdare {
-	display: none;
-}
-
-#ludumdare:checked ~ main li:not(.ludumdare) {
-	display: none;
-}
-
-#releases:checked ~ main li:not([id^="release"]) {
-	display: none;
-}
-
-#events:checked ~ main li:not([id^="e"]) {
-	display: none;
-}
-
-#speaker:checked ~ main li:not([id^="speaker"]) {
-	display: none;
-}
-
-#videos:checked ~ main li:not([id^="noc"]) {
-	display: none;
-}
-
-#news:checked ~ main li[id^="r"]:not([id^="release"]),
-/*#weekly-news:checked ~ main li[id^="ld"],*/
-#ludumdare:checked ~ main li.ludumdare,
-#releases:checked ~ main li[id^="release"],
-#events:checked ~ main li[id^="e"],
-#speaker:checked ~ main li[id^="speaker"],
-#videos:checked ~ main li[id^="noc"], 
-#videos:checked ~ main li[id*="--video"],
-#articles:checked ~ main li[itemtype*="Article"]:not(.ludumdare) {
-	display: flex;
-}
 
 /* START Basic styling */
-
 html, body {
-	color: #333332;
-    background-color: var(--cs-bg-Core);
+	color: var(--text-core0);
+    background-color: var(--bg_core0);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 1px 1px 2px var(--text-core30);
 }
 
 /* START Basic grid */
@@ -189,8 +46,7 @@ html[class="/frontpage"] {
 		padding: 1em;
 		/*text-align: center;*/
 		transition: border .2s;
-		/*background-color: rgba(246, 244, 237, 0.8);*/
-		background-color: cs(-2, bg-Core);
+		background-color: var(--bg_core-2);
 
 		& a {
 			color: inherit;
@@ -206,9 +62,9 @@ html[class="/frontpage"] {
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-around;
-		background-color: cs(6, bg-L1);
-		border-top: 1px solid cs(8, bg-R1);
-		border-bottom: 1px solid cs(8, bg-R1);
+		background-color: var(--bg_left_a6);
+		border-top: 1px solid var(--bg_left_b10);
+		border-bottom: 1px solid var(--bg_left_b10);
 
 		& .icon {
 			padding: 0;
@@ -228,19 +84,19 @@ html[class="/frontpage"] {
 	}
 
 	& .articles .roundups {
-		border-left: .25em solid rgba(241,89,34, 0.5);
+		border-left: var(--border-width) solid var(--section-articles10);
 
 		&:hover {
-			border-left: .5em solid rgba(241,89,34, 1);
+			border-left: .5em solid var(--section-articles0);
 		}
 
 	}
 
 	& .jams .ludumdare {
-		border-left: .25em solid rgba(119, 68, 204, 0.5);
+		border-left: var(--border-width) solid var(--section-ludumdare10);
 
 		&:hover {
-			border-left: .5em solid rgba(119, 68, 204, 1);
+			border-left: .5em solid var(--section-ludumdare0);
 		}
 
 	}
