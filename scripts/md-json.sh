@@ -9,6 +9,9 @@ DATA_BASE="${DATA_BASE/.md/}"
 # From https://stackoverflow.com/a/246128
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+#echo $INPUT
+#echo $OUTPUT
+
 mkdir -p $DATA_DIR
 
 node "$DIR\..\tools\md_json\bin\md-json.js" \
