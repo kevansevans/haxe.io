@@ -17,6 +17,7 @@ using Reflect;
 using StringTools;
 using haxe.io.Path;
 using tink.CoreApi;
+using sys.FileSystem;
 
 class Entry {
 
@@ -175,6 +176,11 @@ class Entry {
             var ast = preprocessAst( markdown.parse( content, markdownEnvironment ) );
             var payload = generatePayload( markdownEnvironment );
 
+            if (!'$cwd/${output.directory()}'.exists()) {
+                '$cwd/${output.directory()}'.createDirectory();
+
+            }
+            
             writeFile('$cwd/$output'.normalize(), tink.Json.stringify(payload), function(error) {
                 if (error != null) trace(error);
                 future.trigger(Noise);
