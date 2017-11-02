@@ -45,14 +45,12 @@
             <ul class="grid articles">
                 <json-data select=".roundups_list .p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
                     <li class="roundups" itemtype="http://schema.org/Article" :id="r{*}" itemscope="">
-                        <span :to="/data/roundups/{*}.json"></span>
-                        <json-data :src="/data/roundups/{*}.json" select=".filename:first-child">
-                            <span :to="*"></span>
+                        <json-data :src="/data/roundups/{*}.json" select="*">
+                            <a :title="Haxe Roundup № {.filename:first-child}" :href="/roundups/{.filename:first-child}/">
+                                <h2 itemprop="headline"><span class="full">Haxe </span><span class="short">Roundup </span><span class="full">№ </span><span class="optional">#</span><span :to="{.filename:first-child}"></span></h2>
+                            </a>
+                            <time :dateCreated="{.created .raw}" pubdate="{.published .raw}" datetime="{.published .raw}"><span :to="{.published .pretty}"></span></time>
                         </json-data>
-                        <a :title="Haxe Roundup № {*}" :href="/roundups/{*}/">
-                            <h2 itemprop="headline"><span class="full">Haxe </span><span class="short">Roundup </span><span class="full">№ </span><span class="optional">#</span><span :to="{*}"></span></h2>
-                        </a>
-                        <time dateCreated="$date" pubdate="" datetime="$date"></time>
                     </li>
                 </json-data>
             </ul>
