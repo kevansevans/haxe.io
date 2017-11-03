@@ -12,6 +12,7 @@ lighthouse/
 src/devicon/
 src/twemoji/
 secrets.json
+src/data/roundups/
 
 # NodeJS specific
 #################
