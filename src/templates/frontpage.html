@@ -44,7 +44,7 @@
             <h2>News</h2>
             <ul class="grid articles">
                 <json-data select=".roundups_list .p:nth-child(-n+5) :nth-child(-n+5)" each><!-- The double `nth-child` reverses the results -->
-                    <li class="roundups" itemtype="http://schema.org/Article" :id="r{*}" itemscope="">
+                    <li class="roundups" itemtype="http://schema.org/Article" :id="r{*}" itemscope>
                         <json-data :src="/data/roundups/{*}.json" select="*">
                             <a :title="Haxe Roundup № {.filename:first-child}" :href="/roundups/{.filename:first-child}/">
                                 <h2 itemprop="headline"><span class="full">Haxe </span><span class="short">Roundup </span><span class="full">№ </span><span class="optional">#</span><span :to="{.filename:first-child}"></span></h2>
