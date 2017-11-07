@@ -49,7 +49,7 @@
                             <a :title="Haxe Roundup № {.filename:first-child}" :href="/roundups/{.filename:first-child}/">
                                 <h2 itemprop="headline"><span class="full">Haxe </span><span class="short">Roundup </span><span class="full">№ </span><span class="optional">#</span><span :to="{.filename:first-child}"></span></h2>
                             </a>
-                            <time :dateCreated="{.created .raw}" pubdate="{.published .raw}" datetime="{.published .raw}"><span :to="{.published .pretty}"></span></time>
+                            <time :dateCreated="{.created .raw}" :pubdate="{.published .raw}" :datetime="{.published .raw}"><span :to="{.published .pretty}"></span></time>
                         </json-data>
                     </li>
                 </json-data>
